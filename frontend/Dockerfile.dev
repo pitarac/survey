@@ -1,0 +1,14 @@
+# Usa uma imagem base do Node.js
+FROM node:14
+
+# Define o diretório de trabalho no contêiner
+WORKDIR /usr/src/app
+
+# Copia package.json e package-lock.json
+COPY package*.json ./
+
+# Instala as dependências
+RUN npm install
+
+# Comando para iniciar o servidor de desenvolvimento do React
+CMD ["npm", "start"]

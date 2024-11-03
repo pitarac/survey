@@ -1,0 +1,68 @@
+/* styles/HeaderFooter.css */
+.header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.header-logo {
+  height: 50px;
+}
+
+.header-logo.left {
+  margin-right: 15px;
+}
+
+.header-logo.right {
+  margin-left: 15px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-list li a:hover {
+  color: #ddd;
+}
+
+.footer {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer p {
+  margin: 0 0 10px;
+}
+
+.footer .nav-list {
+  justify-content: center;
+}
+
+.footer .nav-list li a {
+  color: #fff;
+}
+
+.footer .nav-list li a:hover {
+  color: #ddd;
+}

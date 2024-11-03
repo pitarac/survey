@@ -1,0 +1,164 @@
+/* styles/Survey.css */
+.survey {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.survey-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.progress-bar-container {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  height: 25px;
+}
+
+.progress-bar {
+  background-color: #007bff;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+.survey-section-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.survey-question-container {
+  margin-bottom: 20px;
+}
+
+.survey-question {
+  margin-bottom: 15px;
+}
+
+.survey-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.survey-nav-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.survey-nav-button:hover {
+  background-color: #0056b3;
+}
+
+.survey-submit-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.survey-submit-button:hover {
+  background-color: #218838;
+}
+
+.comment {
+  margin-top: 15px;
+}
+
+.comment label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.comment textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.comment textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Style for text input */
+.question input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.question input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Style for select input to have the entire area selectable */
+.options-list label {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.options-list label:hover {
+  background-color: #f0f0f0;
+}
+
+.options-list input[type="radio"] {
+  margin-right: 10px;
+}
+
+.options-list input[type="radio"]:checked + label {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}
+
+/* Ensure the entire label changes style when the input is selected */
+.options-list input[type="radio"]:checked + label,
+.options-list label.selected {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}
