@@ -7,7 +7,11 @@ require('./src/infrastructure/database'); // Conexão com o banco de dados
 
 const app = express(); // Inicialize o app antes de usá-lo
 
-app.use(cors()); // Use o CORS após criar o app
+
+app.use(cors({
+  origin: 'https://idecace.datasavvy.com.br', // Altere para o domínio do seu frontend
+  methods: ['GET', 'POST'], // Adicione os métodos necessários
+}));// Use o CORS após criar o app
 app.use(express.json()); // Middleware para requisições JSON
 
 // Mantém as rotas já existentes

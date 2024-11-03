@@ -90,7 +90,7 @@ const Survey = () => {
     console.log("Comentários enviados:", comments);
 
     try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "/api";
         
         // Verificar a estrutura do objeto que está sendo enviado ao backend
         const payload = {
@@ -102,7 +102,7 @@ const Survey = () => {
         console.log("Payload a ser enviado ao backend:", payload);
 
         // Enviar o payload ao backend
-        const response = await axios.post(`${backendUrl}/api/submit`, payload, {
+        const response = await axios.post(`${backendUrl}/submit`, payload, {
             headers: {
                 'Content-Type': 'application/json'
             }
