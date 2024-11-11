@@ -116,9 +116,7 @@ export default function Login() {
             </Row>
           </Form>
         </Card.Body>
-        <Card.Footer>
-          Não tem uma conta? <Link to="/pages/signup">Crie uma Conta</Link>
-        </Card.Footer>
+       
       </Card>
     </div>
   );

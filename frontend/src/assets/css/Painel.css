@@ -1,0 +1,48 @@
+.painel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.painel-title {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+}
+
+.chart-container {
+  margin-bottom: 50px;
+}
+
+.chart-title {
+  text-align: left; /* Justificado para a esquerda */
+  font-size: 1.5em;
+  color: #444;
+  margin-bottom: 15px; /* Espaçamento entre o título e o gráfico */
+}
+
+.logout-button-container {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.unit-selector-container {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 1.2em;
+  color: #777;
+}
