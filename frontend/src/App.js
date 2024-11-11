@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Survey from "./pages/Survey";
 import ThankYou from "./pages/ThankYou";
