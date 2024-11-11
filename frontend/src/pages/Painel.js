@@ -13,13 +13,16 @@ function Painel() {
   const [error, setError] = useState(null);
   const [selectedUnit, setSelectedUnit] = useState("Todas");
 
+  // Obter a URL base da API do arquivo .env
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
     async function fetchData() {
       try {
         // Adicionando o parâmetro de unidade na URL se necessário
         const url = selectedUnit === "Todas" 
-          ? 'http://localhost:3000/api/processed-responses'
-          : `http://localhost:3000/api/processed-responses?unit=${encodeURIComponent(selectedUnit)}`;
+          ? `${baseUrl}/processed-responses`
+          : `${baseUrl}/processed-responses?unit=${encodeURIComponent(selectedUnit)}`;
 
         const response = await axios.get(url);
         setData(response.data);
@@ -31,7 +34,7 @@ function Painel() {
       }
     }
     fetchData();
-  }, [selectedUnit]); // Atualiza os dados sempre que a unidade selecionada mudar
+  }, [selectedUnit, baseUrl]); // Atualiza os dados sempre que a unidade selecionada mudar
 
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>{error}</div>;
