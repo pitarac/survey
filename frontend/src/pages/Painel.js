@@ -95,13 +95,13 @@ function Painel() {
     <div style={{ padding: '20px' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Relatório de Pesquisa</h1>
       
-      <MethodologySection />
+      
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <UnitSelector selectedUnit={selectedUnit} handleUnitChange={handleUnitChange} />
         <LogoutButton handleLogout={handleLogout} />
       </div>
-      
+      <MethodologySection />
       <SummarySection totalResponses={totalResponses} data={data} questions={questions} />
       
 
