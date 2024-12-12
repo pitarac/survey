@@ -9,7 +9,6 @@ import LogoutButton from '../components/LogoutButton';
 import MethodologySection from '../components/MethodologySection';
 import SummarySection from '../components/SummarySection';
 import AnalysisSection from '../components/AnalysisSection';
-import RatingComments from '../components/RatingComments';
 
 // Importando Chart.js e registrando todos os componentes necessários
 import {
@@ -23,11 +22,11 @@ import {
   Legend,
 } from 'chart.js';
 
-// Registrar todos os componentes necessários no Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 function Painel() {
   const [data, setData] = useState([]);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedUnit, setSelectedUnit] = useState("Todas");
@@ -37,7 +36,6 @@ function Painel() {
 
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-  // Efeito para carregar os dados de respostas processadas
   useEffect(() => {
     if (!currentUser) {
       navigate('/login');
@@ -49,22 +47,25 @@ function Painel() {
         const url = selectedUnit === "Todas"
           ? `${baseUrl}/processed-responses`
           : `${baseUrl}/processed-responses?unit=${encodeURIComponent(selectedUnit)}`;
-
         const response = await axios.get(url);
         setData(response.data);
 
-        // Calcula o total de respostas baseado em todos os registros de respostas
-        let totalItem1 = 0;
-        response.data.forEach((questionData) => {
-          if (questionData.questionId === "1" || questionData.questionId === 1) {
-            totalItem1 += Object.values(questionData.options).reduce((acc, val) => acc + val, 0);
+        // Calcula o total de respostas
+        const total = response.data.reduce((sum, question) => {
+          if (question.questionId === "1" || question.questionId === 1) {
+            return sum + Object.values(question.options).reduce((acc, val) => acc + val, 0);
           }
-        });
-        setTotalResponses(totalItem1);
-        
+          return sum;
+        }, 0);
+        setTotalResponses(total);
+
+        // Carrega os comentários
+        const commentsResponse = await axios.get('/classified_comments.json');
+        setComments(commentsResponse.data);
+
         setLoading(false);
       } catch (err) {
-        console.error('Erro ao buscar os dados da API: ', err);
+        console.error('Erro ao buscar dados:', err);
         setError('Erro ao carregar os dados do painel.');
         setLoading(false);
       }
@@ -82,40 +83,37 @@ function Painel() {
     }
   };
 
+  const handleUnitChange = (event) => {
+    setSelectedUnit(event.target.value);
+  };
+
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>{error}</div>;
 
   const sortedData = data.sort((a, b) => parseInt(a.questionId) - parseInt(b.questionId));
 
-  const handleUnitChange = (event) => {
-    setSelectedUnit(event.target.value);
-  };
-
   return (
     <div style={{ padding: '20px' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Relatório de Pesquisa</h1>
-      
-      
-      
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <UnitSelector selectedUnit={selectedUnit} handleUnitChange={handleUnitChange} />
         <LogoutButton handleLogout={handleLogout} />
       </div>
       <MethodologySection />
       <SummarySection totalResponses={totalResponses} data={data} questions={questions} />
-      
-
-      <AnalysisSection data={data} questions={questions} />
-      
-
+      <AnalysisSection data={data} questions={questions} comments={comments} />
       {sortedData.length === 0 ? (
         <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
       ) : (
         sortedData.map((questionData) => (
-          <ChartSection key={questionData.questionId} questionData={questionData} questions={questions} totalResponses={totalResponses} />
+          <ChartSection
+            key={questionData.questionId}
+            questionData={questionData}
+            questions={questions}
+            totalResponses={totalResponses}
+          />
         ))
       )}
-      <RatingComments/>
     </div>
   );
 }

@@ -1,55 +1,56 @@
 import React, { useEffect, useState } from "react";
 
-const RatingComments = () => {
+const RatingComments = ({ comments: propComments }) => {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [classificationFilter, setClassificationFilter] = useState("");
-    const [questionFilter, setQuestionFilter] = useState(""); // Filtro para o número da pergunta
+    const [questionFilter, setQuestionFilter] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
-    const [sortOrder, setSortOrder] = useState("desc"); // 'asc' ou 'desc'
+    const [sortOrder, setSortOrder] = useState("desc");
 
     useEffect(() => {
-        fetch("/classified_comments.json")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`Erro ao buscar o arquivo: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setData(data);
-                setFilteredData(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Erro ao carregar dados:", error);
-                setLoading(false);
-            });
-    }, []);
+        if (propComments) {
+            setData(propComments);
+            setFilteredData(propComments);
+            setLoading(false);
+        } else {
+            fetch("/classified_comments.json")
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Erro ao buscar o arquivo: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setData(data);
+                    setFilteredData(data);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error("Erro ao carregar dados:", error);
+                    setLoading(false);
+                });
+        }
+    }, [propComments]);
 
-    // Atualizar dados filtrados com base nos filtros ativos
     useEffect(() => {
         let filtered = data;
 
-        // Filtrar por classificação
         if (classificationFilter) {
             filtered = filtered.filter((item) => item.classification === classificationFilter);
         }
 
-        // Filtrar por número da pergunta
         if (questionFilter) {
             filtered = filtered.filter((item) => item.questionId === questionFilter);
         }
 
-        // Filtrar por termo de busca
         if (searchTerm) {
             filtered = filtered.filter((item) =>
                 item.comment.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
-        // Ordenar por confiança
         filtered = filtered.sort((a, b) =>
             sortOrder === "asc" ? a.confidence - b.confidence : b.confidence - a.confidence
         );
@@ -68,18 +69,12 @@ const RatingComments = () => {
     return (
         <div>
             <h1>Resultados Classificados</h1>
-                <p style={{ fontSize: "14px", color: "#555", marginTop: "10px" }}>
-                    Este painel apresenta os resultados de análises automáticas realizadas sobre os comentários fornecidos. 
-                    Utilizamos um modelo de <strong>Inteligência Artificial</strong> baseado na biblioteca <strong>Transformers</strong> em Python, 
-                    que processa linguagem natural para identificar o sentimento predominante em cada comentário, como <strong>positivo</strong>, 
-                    <strong>negativo</strong> ou <strong>neutro</strong>. 
-                </p>
-                <p style={{ fontSize: "14px", color: "#555", marginTop: "5px" }}>
-                    Além disso, cada classificação é acompanhada de um <strong>score de confiança</strong>, que indica o nível de certeza do modelo em relação à sua análise. 
-                    O score varia de 0 a 1, onde valores mais próximos de 1 representam maior confiança na classificação atribuída.
-                </p>
-
-            {/* Filtros */}
+            <p style={{ fontSize: "14px", color: "#555", marginTop: "10px" }}>
+                Este painel apresenta os resultados de análises automáticas realizadas sobre os comentários fornecidos. 
+                Utilizamos um modelo de <strong>Inteligência Artificial</strong> baseado na biblioteca <strong>Transformers</strong> em Python, 
+                que processa linguagem natural para identificar o sentimento predominante em cada comentário, como <strong>positivo</strong>, 
+                <strong>negativo</strong> ou <strong>neutro</strong>. 
+            </p>
             <div style={{ marginBottom: "20px" }}>
                 <label>
                     Classificação:
@@ -93,7 +88,6 @@ const RatingComments = () => {
                         <option value="NEUTRAL">Neutro</option>
                     </select>
                 </label>
-
                 <label style={{ marginLeft: "20px" }}>
                     Número da Pergunta:
                     <select
@@ -108,7 +102,6 @@ const RatingComments = () => {
                         ))}
                     </select>
                 </label>
-
                 <label style={{ marginLeft: "20px" }}>
                     Buscar comentário:
                     <input
@@ -118,7 +111,6 @@ const RatingComments = () => {
                         placeholder="Digite uma palavra-chave"
                     />
                 </label>
-
                 <label style={{ marginLeft: "20px" }}>
                     Ordenar por confiança:
                     <select
@@ -130,8 +122,6 @@ const RatingComments = () => {
                     </select>
                 </label>
             </div>
-
-            {/* Tabela com scroll interno */}
             <div style={{ maxHeight: "400px", overflowY: "scroll", border: "1px solid #ccc", padding: "10px" }}>
                 <table border="1" style={{ width: "100%", textAlign: "left" }}>
                     <thead>
