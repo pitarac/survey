@@ -1,6 +1,7 @@
+import React from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 import Survey from "./pages/Survey";
-import ThankYou from "./pages/ThankYou";ç
+import ThankYou from "./pages/ThankYou";
 import Login from "./pages/Login";
 import Painel from "./pages/Painel";
 import Auditoria from "./pages/Auditoria";
