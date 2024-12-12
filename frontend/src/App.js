@@ -4,6 +4,7 @@ import ThankYou from "./pages/ThankYou";
 import Login from "./pages/Login";
 import Painel from "./pages/Painel";
 import Auditoria from "./pages/Auditoria";
+import TokensPage from "./pages/TokensPage"; // Importando a nova página
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 // import css
@@ -35,6 +36,14 @@ function App() {
             </RequireAuth>
           } 
         />
+        <Route 
+          path="/tokens" 
+          element={
+            <RequireAuth>
+              <TokensPage />
+            </RequireAuth>
+          } 
+        />
       </Routes>
     </AuthProvider>
   );
@@ -42,7 +51,7 @@ function App() {
 
 // Componente para proteger rotas que necessitam de autenticação
 function RequireAuth({ children }) {
-  const { currentUser } = useAuth(); // Altere para pegar currentUser do context, assim como no exemplo abaixo
+  const { currentUser } = useAuth();
 
   return currentUser ? children : <Navigate to="/login" />;
 }

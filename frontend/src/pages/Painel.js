@@ -98,29 +98,42 @@ function Painel() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Relatório de Pesquisa</h1>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <UnitSelector selectedUnit={selectedUnit} handleUnitChange={handleUnitChange} />
-        <LogoutButton handleLogout={handleLogout} />
-      </div>
-      <MethodologySection />
-      <SummarySection totalResponses={totalResponses} data={data} questions={questions} />
-      <AnalysisSection data={data} questions={questions} comments={comments} />
-      {sortedData.length === 0 ? (
-        <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
-      ) : (
-        sortedData.map((questionData) => (
-          <ChartSection
-            key={questionData.questionId}
-            questionData={questionData}
-            questions={questions}
-            totalResponses={totalResponses}
-          />
-        ))
-      )}
-      {/* Incluindo o RatingComments */}
-      <RatingComments comments={comments} />
-    </div>
+  <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Relatório de Pesquisa</h1>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+    <UnitSelector selectedUnit={selectedUnit} handleUnitChange={handleUnitChange} />
+    <LogoutButton handleLogout={handleLogout} />
+    <button
+      onClick={() => navigate('/auditoria')}
+      style={{
+        padding: '10px 20px',
+        fontSize: '16px',
+        color: '#fff',
+        backgroundColor: '#007bff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+      }}
+    >
+      Auditoria dos Dados
+    </button>
+  </div>
+  <MethodologySection />
+  <SummarySection totalResponses={totalResponses} data={data} questions={questions} />
+  <AnalysisSection data={data} questions={questions} comments={comments} />
+  {sortedData.length === 0 ? (
+    <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
+  ) : (
+    sortedData.map((questionData) => (
+      <ChartSection
+        key={questionData.questionId}
+        questionData={questionData}
+        questions={questions}
+        totalResponses={totalResponses}
+      />
+    ))
+  )}
+</div>
   );
 }
 
