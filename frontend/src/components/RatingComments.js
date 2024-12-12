@@ -68,6 +68,16 @@ const RatingComments = () => {
     return (
         <div>
             <h1>Resultados Classificados</h1>
+                <p style={{ fontSize: "14px", color: "#555", marginTop: "10px" }}>
+                    Este painel apresenta os resultados de análises automáticas realizadas sobre os comentários fornecidos. 
+                    Utilizamos um modelo de <strong>Inteligência Artificial</strong> baseado na biblioteca <strong>Transformers</strong> em Python, 
+                    que processa linguagem natural para identificar o sentimento predominante em cada comentário, como <strong>positivo</strong>, 
+                    <strong>negativo</strong> ou <strong>neutro</strong>. 
+                </p>
+                <p style={{ fontSize: "14px", color: "#555", marginTop: "5px" }}>
+                    Além disso, cada classificação é acompanhada de um <strong>score de confiança</strong>, que indica o nível de certeza do modelo em relação à sua análise. 
+                    O score varia de 0 a 1, onde valores mais próximos de 1 representam maior confiança na classificação atribuída.
+                </p>
 
             {/* Filtros */}
             <div style={{ marginBottom: "20px" }}>
