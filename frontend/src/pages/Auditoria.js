@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuditPage from "../components/AuditPage";
 import LogoutButton from "../components/LogoutButton";
 
+
 const handleLogout = async (navigate) => {
   try {
     await logout();
