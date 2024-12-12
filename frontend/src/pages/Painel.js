@@ -106,7 +106,7 @@ function Painel() {
       
 
       <AnalysisSection data={data} questions={questions} />
-      <RatingComments/>
+      
 
       {sortedData.length === 0 ? (
         <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
@@ -115,6 +115,7 @@ function Painel() {
           <ChartSection key={questionData.questionId} questionData={questionData} questions={questions} totalResponses={totalResponses} />
         ))
       )}
+      <RatingComments/>
     </div>
   );
 }
