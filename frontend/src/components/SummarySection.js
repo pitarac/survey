@@ -1,35 +1,6 @@
 import React from 'react';
 
-function SummarySection({ totalResponses, data, questions }) {
-  // Função para encontrar a pergunta correspondente pelo ID
-  const getQuestionText = (questionId) => {
-    const question = questions.find((q) => q.id === parseInt(questionId, 10));
-    return question ? question.question : `Pergunta ${questionId} não encontrada`;
-  };
-
-  // Gerar um resumo detalhado
-  const generateSummary = () => {
-    return data.map((questionData) => {
-      const questionText = getQuestionText(questionData.questionId);
-      const totalVotes = Object.values(questionData.options).reduce(
-        (sum, count) => sum + count,
-        0
-      );
-      const mostVotedOption = Object.entries(questionData.options).reduce(
-        (a, b) => (b[1] > a[1] ? b : a)
-      );
-
-      return {
-        question: questionText,
-        totalVotes,
-        mostVoted: mostVotedOption[0],
-        mostVotedCount: mostVotedOption[1],
-      };
-    });
-  };
-
-  const summaryData = generateSummary();
-
+function SummarySection({ totalResponses }) {
   return (
     <div
       style={{
@@ -37,18 +8,19 @@ function SummarySection({ totalResponses, data, questions }) {
         padding: '20px',
         backgroundColor: '#f0f0f0',
         borderRadius: '8px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       }}
     >
       <h2
         style={{
           textAlign: 'center',
           marginBottom: '20px',
-          color: '#333',
+          color: '#007bff',
         }}
       >
         Resumo da Pesquisa
       </h2>
-      <p style={{ marginBottom: '20px', color: '#555' }}>
+      <p style={{ marginBottom: '20px', color: '#555', lineHeight: '1.6' }}>
         A pesquisa foi realizada com o objetivo de entender as percepções e
         necessidades de diferentes grupos de pessoas, incluindo gestores,
         monitores, alunos e pais de alunos. Para garantir a integridade dos
@@ -57,7 +29,7 @@ function SummarySection({ totalResponses, data, questions }) {
         participante. Essa abordagem impede o compartilhamento de links,
         duplicidade de respostas e assegura a autenticidade das informações.
       </p>
-      <p style={{ marginBottom: '20px', color: '#555' }}>
+      <p style={{ marginBottom: '20px', color: '#555', lineHeight: '1.6' }}>
         Além disso, todas as perguntas e respostas foram registradas em
         blockchain, permitindo auditorias futuras e garantindo a transparência
         e a segurança do processo. No total, coletamos{' '}
@@ -65,26 +37,6 @@ function SummarySection({ totalResponses, data, questions }) {
         pesquisa. Abaixo, apresentamos os destaques de cada questão, incluindo
         as opções mais votadas e os totais registrados.
       </p>
-      {summaryData.map((item, index) => (
-        <div
-          key={index}
-          style={{
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: '#fff',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-          }}
-        >
-          <h3 style={{ color: '#444', marginBottom: '10px' }}>{item.question}</h3>
-          <p style={{ marginBottom: '5px' }}>
-            Total de Respostas: <strong>{item.totalVotes}</strong>
-          </p>
-          <p>
-            Opção mais votada: <strong>{item.mostVoted}</strong> ({item.mostVotedCount} votos)
-          </p>
-        </div>
-      ))}
     </div>
   );
 }

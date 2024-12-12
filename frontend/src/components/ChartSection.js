@@ -2,13 +2,10 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import '../styles/Painel.css'; // Importar o CSS atualizado para o layout
 
-
 function ChartSection({ questionData, questions, totalResponses }) {
-  // Encontrar o título da pergunta correspondente
   const questionInfo = questions.find((q) => q.id === parseInt(questionData.questionId));
   const questionTitle = questionInfo ? questionInfo.question : `Pergunta ${questionData.questionId}`;
 
-  // Preparar dados para o gráfico
   const labels = Object.keys(questionData.options);
   const values = Object.values(questionData.options);
   const dataForChart = {
@@ -18,11 +15,11 @@ function ChartSection({ questionData, questions, totalResponses }) {
         label: `Respostas para ${questionTitle}`,
         data: values,
         backgroundColor: [
-          '#28a745', // Excelente
-          '#ffc107', // Boa
-          '#007bff', // Regular
-          '#fd7e14', // Ruim
-          '#dc3545', // Muito Ruim
+          '#28a745',
+          '#ffc107',
+          '#007bff',
+          '#fd7e14',
+          '#dc3545',
         ],
         borderColor: 'rgba(0, 0, 0, 0.1)',
         borderWidth: 1,
@@ -30,7 +27,6 @@ function ChartSection({ questionData, questions, totalResponses }) {
     ],
   };
 
-  // Cálculo dos percentuais
   const percentages = labels.map((label, index) => {
     return ((values[index] / totalResponses) * 100).toFixed(2) + '%';
   });
@@ -43,6 +39,7 @@ function ChartSection({ questionData, questions, totalResponses }) {
           data={dataForChart}
           options={{
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
               legend: {
                 position: 'top',
