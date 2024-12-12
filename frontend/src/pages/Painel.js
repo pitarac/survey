@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import UnitSelector from '../components/UnitSelector';
 import ChartSection from '../components/ChartSection';
 import LogoutButton from '../components/LogoutButton';
+import MethodologySection from '../components/MethodologySection';
+import SummarySection from '../components/SummarySection';
+import AnalysisSection from '../components/AnalysisSection';
 
 // Importando Chart.js e registrando todos os componentes necessários
 import {
@@ -89,15 +92,21 @@ function Painel() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Painel de Resultados</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Relatório de Pesquisa</h1>
+      
+      <MethodologySection />
+      
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        
         <UnitSelector selectedUnit={selectedUnit} handleUnitChange={handleUnitChange} />
         <LogoutButton handleLogout={handleLogout} />
       </div>
-      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
-        <strong>Total de Registros de Respostas : {totalResponses}</strong>
-      </div>
+      
+      <SummarySection totalResponses={totalResponses} data={data} questions={questions} />
+      
+
+      <AnalysisSection data={data} questions={questions} />
+
+
       {sortedData.length === 0 ? (
         <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
       ) : (
