@@ -9,6 +9,7 @@ import LogoutButton from '../components/LogoutButton';
 import MethodologySection from '../components/MethodologySection';
 import SummarySection from '../components/SummarySection';
 import AnalysisSection from '../components/AnalysisSection';
+import RatingComments from '../components/RatingComments';
 
 // Importando Chart.js e registrando todos os componentes necessários
 import {
@@ -105,7 +106,7 @@ function Painel() {
       
 
       <AnalysisSection data={data} questions={questions} />
-
+      <RatingComments/>
 
       {sortedData.length === 0 ? (
         <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
