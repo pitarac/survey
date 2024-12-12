@@ -10,8 +10,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 // import css
 import "./assets/css/remixicon.css";
 
-// import scss
-import "./assets/scss/style.scss";
+
 
 function App() {
   return (
