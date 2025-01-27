@@ -42,58 +42,56 @@
   margin-top: 5px;
 }
 
-/* -------------------------------------------------
-   Fallback: se nenhuma classe específica combinar,
-   a barra terá cor #ccc.
--------------------------------------------------- */
+/* Fallback: se nenhuma classe específica combinar, a barra terá cor #ccc. */
 .response-bar-inner {
   height: 100%;
   background-color: #ccc; /* fallback */
   transition: width 0.3s ease-in-out;
 }
 
-/* CLASSES ESPECÍFICAS DE OPÇÕES COMUNS */
+/* ---------------------------------------
+   ORDEM DE MELHOR PARA PIOR
+   1) Excelente
+   2) Boa / Sim / Sempre / ...
+   3) Regular / Parcialmente / Talvez / ...
+   4) Ruim / Muito-ruim / Não / Nunca / ...
+----------------------------------------*/
 
-/* Avaliações positivas */
+/* 1) Excelente */
 .response-bar-inner.excelente {
-  background-color: #28a745;
-}
-.response-bar-inner.boa,
-.response-bar-inner.sim {
-  background-color: #17a2b8;
-}
-.response-bar-inner.sempre {
-  background-color: #28a745;
-}
-.response-bar-inner["na-maioria-das-vezez"],
-.response-bar-inner["na-maioria-das-vezez"] {
-  /* Se você usa normalização e vira "na-maioria-das-vezes", defina abaixo */
-  background-color: #17a2b8;
+  background-color: #28a745; /* Verde */
 }
 
-/* Avaliações neutras ou medianas */
+/* 2) Boa, Sim, Sempre, Na-maioria-das-vezes etc. */
+.response-bar-inner.boa,
+.response-bar-inner.sim,
+.response-bar-inner.sempre,
+.response-bar-inner.na-maioria-das-vezes {
+  background-color: #17a2b8; /* Azul */
+}
+
+/* 3) Regular, Parcialmente, Talvez, Às-vezes, Raramente, Outro, etc. */
 .response-bar-inner.regular,
 .response-bar-inner.parcialmente,
 .response-bar-inner.talvez,
-.response-bar-inner["às-vezez"], /* caso apareça */
-.response-bar-inner["as-vezes"], /* se remover acentos */
-.response-bar-inner["raramente"],
-.response-bar-inner["outro"] { 
-  background-color: #ffc107;
+.response-bar-inner.as-vezes,
+.response-bar-inner.raramente,
+.response-bar-inner.outro {
+  background-color: #ffc107; /* Amarelo */
 }
 
-/* Avaliações negativas */
+/* 4) Ruim, Muito Ruim, Não, Nunca, etc. */
 .response-bar-inner.ruim,
-.response-bar-inner["muito-ruim"],
+.response-bar-inner.muito-ruim,
 .response-bar-inner.nao,
 .response-bar-inner.nunca {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Vermelho */
 }
 
 /* Se você utilizar "Aluno(a)", "Professor(a)", etc. como classe exata,
-   será necessário ESCAPAR os parênteses. Exemplo: */
+   será necessário ESCAPAR os parênteses no CSS. Exemplo: */
 .response-bar-inner.aluno\(a\) {
-  background-color: #17a2b8;
+  background-color: #17a2b8; /* Exemplo de cor */
 }
 .response-bar-inner.professor\(a\) {
   background-color: #17a2b8;
