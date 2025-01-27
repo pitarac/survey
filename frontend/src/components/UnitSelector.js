@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function UnitSelector({ selectedUnit, handleUnitChange }) {
-  const units = ["Todas", "CEU Itapuã", "CEU Recanto", "CEU QNR 02", "CEU QMN 28", "CEU QNN 13", "Outro"];
+  const units = [ "CEU Itapuã", "CEU Recanto", "CEU QNR 02", "CEU QMN 28", "CEU QNN 13",];
 
   // Encontrar o texto correspondente para o valor selecionado
   const selectedUnitText = units.find(unit => unit === selectedUnit) || "Todas";

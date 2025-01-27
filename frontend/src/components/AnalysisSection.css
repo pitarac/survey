@@ -1,0 +1,142 @@
+/* ANÁLISE GERAL */
+.analysis-container {
+  padding: 20px;
+}
+
+/* TÍTULOS DAS SEÇÕES */
+.section-title {
+  font-size: 1.5em;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* BLOCO DE CADA PERGUNTA */
+.question-block {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.question-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* LISTA DE RESPOSTAS (OPÇÕES) */
+.response-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.response-list li {
+  margin-bottom: 5px;
+}
+
+/* BARRA QUE MOSTRA A PROPORÇÃO DE RESPOSTAS */
+.response-bar {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  margin-top: 5px;
+}
+
+/* -------------------------------------------------
+   Fallback: se nenhuma classe específica combinar,
+   a barra terá cor #ccc.
+-------------------------------------------------- */
+.response-bar-inner {
+  height: 100%;
+  background-color: #ccc; /* fallback */
+  transition: width 0.3s ease-in-out;
+}
+
+/* CLASSES ESPECÍFICAS DE OPÇÕES COMUNS */
+
+/* Avaliações positivas */
+.response-bar-inner.excelente {
+  background-color: #28a745;
+}
+.response-bar-inner.boa,
+.response-bar-inner.sim {
+  background-color: #17a2b8;
+}
+.response-bar-inner.sempre {
+  background-color: #28a745;
+}
+.response-bar-inner["na-maioria-das-vezez"],
+.response-bar-inner["na-maioria-das-vezez"] {
+  /* Se você usa normalização e vira "na-maioria-das-vezes", defina abaixo */
+  background-color: #17a2b8;
+}
+
+/* Avaliações neutras ou medianas */
+.response-bar-inner.regular,
+.response-bar-inner.parcialmente,
+.response-bar-inner.talvez,
+.response-bar-inner["às-vezez"], /* caso apareça */
+.response-bar-inner["as-vezes"], /* se remover acentos */
+.response-bar-inner["raramente"],
+.response-bar-inner["outro"] { 
+  background-color: #ffc107;
+}
+
+/* Avaliações negativas */
+.response-bar-inner.ruim,
+.response-bar-inner["muito-ruim"],
+.response-bar-inner.nao,
+.response-bar-inner.nunca {
+  background-color: #dc3545;
+}
+
+/* Se você utilizar "Aluno(a)", "Professor(a)", etc. como classe exata,
+   será necessário ESCAPAR os parênteses. Exemplo: */
+.response-bar-inner.aluno\(a\) {
+  background-color: #17a2b8;
+}
+.response-bar-inner.professor\(a\) {
+  background-color: #17a2b8;
+}
+.response-bar-inner.monitor\(a\) {
+  background-color: #17a2b8;
+}
+.response-bar-inner.gestor\(a\) {
+  background-color: #17a2b8;
+}
+/* "Pai/Mãe/Responsável" -> .pai\/mãe\/responsável */
+.response-bar-inner.pai\/mãe\/responsável {
+  background-color: #17a2b8;
+}
+
+/* ÍNDICES DE SATISFAÇÃO/INSATISFAÇÃO */
+.index-value {
+  font-weight: bold;
+}
+
+/* INDICADORES DE COMENTÁRIOS */
+.comment-index {
+  margin-top: 10px;
+}
+
+.positive {
+  color: #28a745;
+}
+
+.neutral {
+  color: #ffc107;
+}
+
+.negative {
+  color: #dc3545;
+}
+
+/* INTERPRETAÇÃO */
+.interpretation-text {
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  border-left: 3px solid #007bff;
+  padding: 10px;
+  font-style: italic;
+  border-radius: 4px;
+}

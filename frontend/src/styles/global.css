@@ -8,6 +8,10 @@ body {
   padding: 0;
 }
 
+button {
+  font-family: inherit;
+}
+
 /* Container */
 .analysis-container {
   margin: 20px auto;

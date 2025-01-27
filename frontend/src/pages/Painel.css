@@ -1,0 +1,51 @@
+/* src/pages/Painel.css */
+
+/* Estilos gerais para o painel */
+.painel-container {
+  padding: 20px;
+}
+
+/* Estilos para as seções do relatório */
+.introducao, .metodologia, .analise-dados, .conclusao {
+  margin-bottom: 30px;
+}
+
+/* Títulos H2 em Azul */
+.introducao h2, .metodologia h2, .analise-dados h2, .conclusao h2 {
+  color: #007BFF; /* Azul */
+  margin-bottom: 15px;
+}
+
+/* Parágrafos nas seções */
+.introducao p, .metodologia p, .analise-dados p, .conclusao p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Títulos H3 em Azul */
+.metodologia h3 {
+  color: #007BFF; /* Azul */
+  margin-top: 20px;
+}
+
+/* Itálico nas seções específicas */
+.analise-dados em, .introducao em, .metodologia em {
+  font-style: italic;
+}
+
+/* Estilos para a seção de conclusão */
+.conclusao {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+/* Negrito específico (se necessário) */
+strong {
+  font-weight: bold;
+}
+
+/* Itálico específico (se necessário) */
+em {
+  font-style: italic;
+}

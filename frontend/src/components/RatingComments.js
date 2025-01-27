@@ -69,7 +69,7 @@ const RatingComments = ({ comments: propComments }) => {
 
   return (
     <div className={styles["rating-comments-container"]}>
-      <h1 className={styles["rating-comments-title"]}>Resultados Classificados</h1>
+      <h1 className={styles["rating-comments-title"]}>Comentários das perguntas</h1>
       <p className={styles["rating-comments-description"]}>
         Este painel apresenta os resultados de análises automáticas realizadas sobre os comentários fornecidos.
         Utilizamos um modelo de <strong>Inteligência Artificial</strong> baseado na biblioteca{" "}

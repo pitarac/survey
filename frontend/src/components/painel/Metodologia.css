@@ -1,0 +1,44 @@
+/* src/components/painel/Metodologia.css */
+
+.metodologia {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.metodologia h2 {
+  margin-bottom: 15px;
+}
+
+.metodologia h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.metodologia h4 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.metodologia p {
+  margin-bottom: 15px;
+}
+
+.metodologia ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.metodologia pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-left: 3px solid #ccc;
+  overflow-x: auto;
+}
+
+.metodologia code {
+  font-family: 'Courier New', Courier, monospace;
+  color: #c7254e;
+  background-color: #f9f2f4;
+}

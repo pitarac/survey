@@ -2,25 +2,19 @@ import React from 'react';
 
 function MethodologySection() {
   return (
-    <div
-      style={{
-        marginBottom: '20px',
-        padding: '20px',
-        backgroundColor: '#f9f9f9',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-      <h2
-        style={{
-          textAlign: 'center',
-          marginBottom: '15px',
-          color: '#333',
-        }}
-      >
+    <div>
+
+      <h1>
+      Introdução
+      </h1>
+      <p>
+      Este relatório apresenta os resultados de uma pesquisa realizada com o objetivo de avaliar os serviços oferecidos pelo Instituto Idecace aos alunos do Céu das Artes. A pesquisa foi conduzida entre Agosto e dezembro de 2024 e envolveu uma amostra representativa da população total de alunos.
+      </p>
+      <h1>
         Metodologia de Coleta
-      </h2>
-      <p style={{ marginBottom: '10px', color: '#555' }}>
+      </h1>
+      <h2>População e Amostra</h2>
+      <p>
         A pesquisa foi realizada com o objetivo de compreender as percepções e
         necessidades dos participantes em relação aos temas abordados. O
         período de coleta foi entre <strong>[inserir período]</strong>,
@@ -37,7 +31,7 @@ function MethodologySection() {
         blockchain, permitindo auditorias futuras e assegurando a transparência
         do processo.
       </p>
-      <p style={{ marginBottom: '10px', color: '#555' }}>
+      <p>
         Os públicos participantes incluíram:{' '}
         <strong>
           alunos(as), pais/mães/responsáveis, professores(as), gestores(as) e

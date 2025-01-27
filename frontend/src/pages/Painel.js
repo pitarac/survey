@@ -1,15 +1,19 @@
+// src/pages/Painel.js
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import questions from '../utils/questions';
 import { useNavigate } from 'react-router-dom';
-import UnitSelector from '../components/UnitSelector';
+import Header from '../components/Header_log'; // Importando o Header estilizado
 import ChartSection from '../components/ChartSection';
-import LogoutButton from '../components/LogoutButton';
-import MethodologySection from '../components/MethodologySection';
+import Metodologia from '../components/painel/Metodologia'; // Importando o componente Metodologia
 import SummarySection from '../components/SummarySection';
+import AnaliseDados from '../components/painel/AnaliseDados'; // Importando o componente Análise de Dados
 import AnalysisSection from '../components/AnalysisSection';
 import RatingComments from '../components/RatingComments';
+import Introducao from '../components/painel/Introducao'; // Importando o componente Introdução
+import Conclusao from '../components/painel/Conclusao'; // Importando o componente Conclusão
+import './Painel.css'; // Importando estilos específicos do Painel
 
 // Importando Chart.js e registrando componentes necessários
 import {
@@ -87,8 +91,8 @@ function Painel() {
     }
   };
 
-  if (loading) return <div>Carregando...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="loading">Carregando...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   const sortedData = data.sort((a, b) => parseInt(a.questionId) - parseInt(b.questionId));
 
@@ -96,49 +100,67 @@ function Painel() {
     setSelectedUnit(event.target.value);
   };
 
+  // Dados estáticos do Relatório de Pesquisa
+  const periodoPesquisa = "Agosto a Dezembro de 2024";
+  const totalAlunos = 5400;
+  const percentualAmostra = 25;
+  const tamanhoAmostra = 1350;
+  const metodosAnalise = "análise estatística descritiva e testes de hipóteses";
+  const indiceConfianca = 95; // Índice de confiança em %
+  const margemErro = 2.5; // Margem de erro em %
+
   return (
-    <div style={{ padding: '20px' }}>
-    <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Relatório de Pesquisa</h1>
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-      <UnitSelector selectedUnit={selectedUnit} handleUnitChange={handleUnitChange} />
-      <LogoutButton handleLogout={handleLogout} />
-      <button
-        onClick={() => navigate('/auditoria')}
-        style={{
-          padding: '10px 20px',
-          fontSize: '16px',
-          color: '#fff',
-          backgroundColor: '#007bff',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-        }}
-      >
-        Auditoria dos Dados
-      </button>
+    <div className="painel-container container"> {/* Adicionando a classe 'container' do Bootstrap */}
+      {/* Utilizando o componente Header estilizado */}
+      <Header
+        selectedUnit={selectedUnit}
+        handleUnitChange={handleUnitChange}
+        handleLogout={handleLogout}
+      />
+
+      {/* Introdução do Relatório de Pesquisa */}
+      <Introducao 
+        periodo={periodoPesquisa} 
+        totalRespostas={totalResponses}
+        indiceConfianca={indiceConfianca}
+        margemErro={margemErro}
+      />
+
+      {/* Metodologia e Resumo em uma linha */}
+      <div>
+        <div >
+          <Metodologia 
+            totalAlunos={totalAlunos} 
+            percentualAmostra={percentualAmostra} 
+            tamanhoAmostra={tamanhoAmostra} 
+            totalRespostas={totalResponses} 
+            indiceConfianca={indiceConfianca}
+            margemErro={margemErro}
+          />
+        </div>
+        
+      </div>
+
+      {/* Análise e Gráficos */}
+      <div>
+        <div >
+          <AnaliseDados metodosAnalise={metodosAnalise} />
+          <AnalysisSection data={data} questions={questions} comments={comments} />
+        </div>
+      </div>
+
+      
+
+      {/* Comentários */}
+      <div>
+        <div>
+          <RatingComments comments={comments} />
+        </div>
+      </div>
+
+      {/* Conclusão do Relatório de Pesquisa */}
+      <Conclusao />
     </div>
-    <MethodologySection />
-    <SummarySection totalResponses={totalResponses} data={data} questions={questions} />
-    <AnalysisSection data={data} questions={questions} comments={comments} />
-    {sortedData.length === 0 ? (
-      <div style={{ marginTop: '20px' }}>Nenhum dado encontrado.</div>
-    ) : (
-      sortedData.map((questionData) => (
-        <ChartSection
-          key={questionData.questionId}
-          questionData={questionData}
-          questions={questions}
-          totalResponses={totalResponses}
-        />
-      ))
-    )}
-    {/* Adicionando o componente RatingComments */}
-    <div style={{ marginTop: '40px' }}>
-      <RatingComments comments={comments} />
-    </div>
-  </div>
-  
   );
 }
 

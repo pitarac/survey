@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import '../styles/Painel.css'; // Importar o CSS atualizado para o layout
+import './ChartSection.css'; // Importar o CSS atualizado para o layout
 
 function ChartSection({ questionData, questions, totalResponses }) {
   const questionInfo = questions.find((q) => q.id === parseInt(questionData.questionId));

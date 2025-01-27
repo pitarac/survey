@@ -10,6 +10,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 
 // import css
 import "./assets/css/remixicon.css";
+import './styles/global.css'; // Importando os estilos globais
 
 
 

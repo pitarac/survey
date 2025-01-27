@@ -1,3 +1,5 @@
+// src/utils/questions.js
+
 const questions = [
   {
     id: 1,
@@ -13,7 +15,8 @@ const questions = [
     ],
     otherOption: true,
     section: "1. Informações Gerais",
-    allowComment: false // Comentário desabilitado
+    allowComment: false
+    // Sem interpretação pois não exibiremos essa pergunta
   },
   {
     id: 2,
@@ -29,7 +32,8 @@ const questions = [
     ],
     otherOption: true,
     section: "1. Informações Gerais",
-    allowComment: false // Comentário desabilitado
+    allowComment: false,
+    interpretation: "A pergunta identifica qual o tipo de envolvimento do participante com o CEU, permitindo entender melhor o perfil dos respondentes."
   },
   {
     id: 3,
@@ -37,7 +41,8 @@ const questions = [
     type: "radio",
     options: ["Excelente", "Boa", "Regular", "Ruim", "Muito Ruim"],
     section: "2. Avaliação Geral",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "A maioria dos alunos avalia a infraestrutura como boa ou excelente, indicando um alto nível de satisfação geral. Contudo, onde há insatisfação, é fundamental investigar problemas específicos (limpeza, segurança, acessibilidade)."
   },
   {
     id: 4,
@@ -45,7 +50,8 @@ const questions = [
     type: "radio",
     options: ["Excelente", "Boa", "Regular", "Ruim", "Muito Ruim"],
     section: "2. Avaliação Geral",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Os programas e atividades oferecidos são amplamente bem avaliados, com alto índice de satisfação. Sugestões de melhorias podem focar no atendimento das necessidades daqueles que expressam insatisfação ou consideram 'Regular'."
   },
   {
     id: 5,
@@ -53,7 +59,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Parcialmente", "Não"],
     section: "2. Avaliação Geral",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Horários adequados facilitam a participação. Uma parcela que considera 'Parcialmente' ou 'Não' sugere a possibilidade de ampliar ou ajustar as faixas de horário."
   },
   {
     id: 6,
@@ -61,7 +68,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Parcialmente", "Não"],
     section: "2. Avaliação Geral",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "A percepção de ganho pessoal/profissional é um indicador da eficácia das atividades. Um índice elevado aponta que o CEU cumpre sua missão, mas ainda pode haver espaço para aprimorar certos aspectos."
   },
   {
     id: 7,
@@ -69,7 +77,8 @@ const questions = [
     type: "radio",
     options: ["Excelente", "Boa", "Regular", "Ruim", "Muito Ruim"],
     section: "3. Atendimento e Qualidade do Serviço",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "O atendimento da equipe é crucial para a satisfação. Altos índices de avaliação positiva mostram preparo e cordialidade; baixos índices sinalizam necessidade de treinamento ou melhor comunicação."
   },
   {
     id: 8,
@@ -77,7 +86,8 @@ const questions = [
     type: "radio",
     options: ["Sempre", "Na maioria das vezes", "Às vezes", "Raramente", "Nunca"],
     section: "3. Atendimento e Qualidade do Serviço",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Disponibilidade e prontidão da equipe refletem diretamente no bem-estar dos participantes. Respostas negativas indicam possíveis falhas de pessoal, escala ou comunicação interna."
   },
   {
     id: 9,
@@ -85,7 +95,8 @@ const questions = [
     type: "radio",
     options: ["Excelente", "Boa", "Regular", "Ruim", "Muito Ruim"],
     section: "3. Atendimento e Qualidade do Serviço",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Uma boa comunicação é essencial para engajamento. Se os participantes a julgam insuficiente, vale considerar aprimorar canais (WhatsApp, redes sociais, cartazes, etc.)."
   },
   {
     id: 10,
@@ -93,7 +104,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Parcialmente", "Não"],
     section: "4. Impacto e Satisfação Pessoal",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Medir o impacto positivo demonstra o valor social do CEU. Respostas 'Parcialmente' ou 'Não' podem indicar que o CEU não está atingindo todo o potencial de transformação."
   },
   {
     id: 11,
@@ -101,7 +113,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Talvez", "Não"],
     section: "4. Impacto e Satisfação Pessoal",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "O indicador de recomendação sugere grau de satisfação e confiança no CEU. Uma alta taxa de 'Sim' aponta grande aprovação, enquanto 'Talvez' e 'Não' indicam oportunidades de melhorias."
   },
   {
     id: 12,
@@ -109,7 +122,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Não"],
     section: "5. Sugestões e Melhorias",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Esta pergunta abre espaço para melhorias pontuais e específicas. Se 'Sim' for significativo, é fundamental coletar esses comentários para ações futuras."
   },
   {
     id: 13,
@@ -117,7 +131,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Não"],
     section: "5. Sugestões e Melhorias",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Novas atividades ou programas expandem a atratividade do CEU. Mesmo que a maioria diga 'Não', sugestões adicionais podem surgir nos comentários."
   },
   {
     id: 14,
@@ -125,7 +140,8 @@ const questions = [
     type: "radio",
     options: ["Sim", "Não"],
     section: "5. Sugestões e Melhorias",
-    allowComment: true // Comentário habilitado
+    allowComment: true,
+    interpretation: "Um espaço aberto para o participante expressar livremente opiniões, sugestões e relatos além dos itens anteriores."
   }
 ];
 

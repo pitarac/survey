@@ -1,0 +1,17 @@
+/* src/components/painel/Conclusao.css */
+
+.conclusao {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.conclusao h2 {
+  color: #007BFF; /* Azul */
+  margin-bottom: 15px;
+}
+
+.conclusao p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}

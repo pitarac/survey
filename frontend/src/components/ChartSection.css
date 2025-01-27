@@ -1,0 +1,281 @@
+/* Global Styles */
+/* Define estilos que afetam todo o documento */
+body {
+  font-family: Arial, sans-serif; /* Define a fonte padrão para todo o corpo */
+  background-color: #f8f9fa; /* Cor de fundo suave para toda a página */
+  color: #333; /* Cor de texto padrão */
+  line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
+  margin: 0; /* Remove a margem padrão do corpo */
+  padding: 0; /* Remove o padding padrão do corpo */
+}
+
+/* Container */
+/* Estilo para contêineres principais, como seções de análise */
+.analysis-container {
+  margin: 20px auto; /* Margem superior e inferior de 20px, centraliza horizontalmente */
+  max-width: 900px; /* Largura máxima do contêiner */
+  background: #fff; /* Fundo branco */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 20px; /* Espaçamento interno de 20px */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidade */
+}
+
+/* Section Title */
+/* Estilos para títulos de seções */
+.section-title {
+  font-size: 1.5em; /* Tamanho da fonte maior para destaque */
+  margin-bottom: 10px; /* Espaço abaixo do título */
+  padding-bottom: 5px; /* Espaço interno abaixo do texto */
+  border-bottom: 2px solid #007bff; /* Linha azul abaixo do título */
+  color: #007bff; /* Cor azul para o texto do título */
+  text-align: center; /* Centraliza o texto do título */
+}
+
+/* Question Block */
+/* Estilo para blocos de perguntas */
+.question-block {
+  margin: 20px 0; /* Espaço acima e abaixo do bloco */
+  padding: 15px; /* Espaço interno de 15px */
+  border: 1px solid #ddd; /* Borda cinza clara */
+  border-radius: 8px; /* Bordas arredondadas */
+  background-color: #f9f9f9; /* Fundo levemente cinza */
+}
+
+/* Question Title */
+/* Estilo para títulos de perguntas */
+.question-title {
+  font-weight: bold; /* Texto em negrito */
+  font-size: 1.2em; /* Tamanho da fonte maior que o normal */
+  color: #555; /* Cor cinza escura para o texto */
+  margin-bottom: 10px; /* Espaço abaixo do título */
+}
+
+/* Response List */
+/* Estilos para listas de respostas */
+.response-list {
+  list-style: none; /* Remove os marcadores padrão */
+  padding: 0; /* Remove o padding padrão */
+}
+
+/* Resposta Individual na Lista */
+/* Estilos para cada item da lista de respostas */
+.response-list li {
+  margin: 5px 0; /* Espaço acima e abaixo de cada item */
+  display: flex; /* Utiliza flexbox para layout */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  justify-content: space-between; /* Espaça os itens uniformemente */
+}
+
+/* Satisfaction/Comments Indices */
+/* Estilos para rótulos e valores de índices de satisfação ou comentários */
+
+/* Rótulo do Índice */
+.index-label {
+  display: inline-block; /* Permite definir largura e altura */
+  font-weight: bold; /* Texto em negrito */
+}
+
+/* Valor do Índice */
+.index-value {
+  padding: 5px 10px; /* Espaçamento interno */
+  border-radius: 4px; /* Bordas arredondadas */
+  color: #fff; /* Texto branco */
+  font-weight: bold; /* Texto em negrito */
+}
+
+/* Índice de Satisfação Alta */
+.index-value.satisfaction-high {
+  background-color: #28a745; /* Verde */
+}
+
+/* Índice de Satisfação Baixa */
+.index-value.satisfaction-low {
+  background-color: #dc3545; /* Vermelho */
+}
+
+/* Índice Neutro */
+.index-value.neutral {
+  background-color: #6c757d; /* Cinza */
+}
+
+/* Comments Section */
+/* Estilos para a seção de comentários */
+
+/* Container de Índice de Comentários */
+.comment-index {
+  margin-top: 10px; /* Espaço acima da seção */
+  font-size: 0.9em; /* Tamanho da fonte menor */
+}
+
+/* Tipo de Comentário Positivo */
+.comment-index .positive {
+  color: #28a745; /* Verde */
+}
+
+/* Tipo de Comentário Neutro */
+.comment-index .neutral {
+  color: #6c757d; /* Cinza */
+}
+
+/* Tipo de Comentário Negativo */
+.comment-index .negative {
+  color: #dc3545; /* Vermelho */
+}
+
+/* Progress Bar for Responses */
+/* Estilos para barras de progresso que representam respostas */
+
+/* Container da Barra de Resposta */
+.response-bar {
+  height: 10px; /* Altura da barra */
+  border-radius: 4px; /* Bordas arredondadas */
+  background: #e9ecef; /* Fundo cinza claro */
+  overflow: hidden; /* Esconde conteúdo que ultrapassa o contêiner */
+  margin: 0 10px; /* Espaço à esquerda e direita */
+  flex-grow: 1; /* Expande para ocupar espaço disponível */
+}
+
+/* Barra Interna da Barra de Resposta */
+.response-bar div {
+  height: 100%; /* Altura igual ao contêiner */
+  transition: width 0.3s ease; /* Transição suave para a largura */
+}
+
+/* Estado Excelente */
+.response-bar .excellent {
+  background: #28a745; /* Verde */
+}
+
+/* Estado Bom */
+.response-bar .good {
+  background: #ffc107; /* Amarelo */
+}
+
+/* Estado Regular */
+.response-bar .regular {
+  background: #007bff; /* Azul */
+}
+
+/* Estado Ruim */
+.response-bar .poor {
+  background: #fd7e14; /* Laranja */
+}
+
+/* Estado Muito Ruim */
+.response-bar .very-poor {
+  background: #dc3545; /* Vermelho */
+}
+
+/* Chart Section Container */
+/* Estilos para a seção que contém gráficos */
+.chart-section {
+  margin-bottom: 40px; /* Espaço abaixo da seção */
+  padding: 20px; /* Espaço interno de 20px */
+  background: #fff; /* Fundo branco */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Chart Container */
+/* Estilos para o contêiner interno do gráfico */
+.chart-container {
+  margin-top: 20px; /* Espaço acima do gráfico */
+  max-width: 600px; /* Largura máxima do gráfico */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+/* Question Title */
+/* Estilos adicionais para títulos de perguntas (duplicado) */
+.question-title {
+  font-size: 1.4em; /* Tamanho da fonte maior */
+  font-weight: bold; /* Texto em negrito */
+  color: #333; /* Cor preta suave */
+  margin-bottom: 10px; /* Espaço abaixo do título */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Percentages Container */
+/* Estilos para o contêiner de porcentagens */
+.percentages-container {
+  margin-top: 20px; /* Espaço acima */
+}
+
+/* Título dentro do Percentages Container */
+.percentages-container h4 {
+  font-size: 1.2em; /* Tamanho da fonte */
+  margin-bottom: 10px; /* Espaço abaixo */
+  color: #555; /* Cor cinza */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Lista de Porcentagens de Respostas */
+.response-percentages {
+  list-style: none; /* Remove marcadores */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+/* Item Individual de Porcentagem de Resposta */
+.response-item {
+  display: flex; /* Utiliza flexbox para layout */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  margin-bottom: 10px; /* Espaço abaixo do item */
+}
+
+/* Rótulo da Resposta */
+.response-label {
+  flex: 1; /* Ocupa todo o espaço disponível */
+  font-weight: bold; /* Texto em negrito */
+  color: #333; /* Cor cinza escura */
+}
+
+/* Valor da Resposta */
+.response-value {
+  margin-right: 10px; /* Espaço à direita */
+  font-weight: bold; /* Texto em negrito */
+  color: #555; /* Cor cinza */
+}
+
+/* Progress Bar */
+/* Estilos adicionais para a barra de progresso (duplicado) */
+
+/* Container da Barra de Progresso */
+.response-bar {
+  height: 10px; /* Altura da barra */
+  background: #e9ecef; /* Fundo cinza claro */
+  border-radius: 5px; /* Bordas arredondadas */
+  overflow: hidden; /* Esconde conteúdo que ultrapassa o contêiner */
+  flex-grow: 1; /* Expande para ocupar espaço disponível */
+  position: relative; /* Posicionamento relativo para elementos internos */
+}
+
+/* Barra Interna da Barra de Progresso */
+.response-bar-inner {
+  height: 100%; /* Altura igual ao contêiner */
+  transition: width 0.3s ease; /* Transição suave para a largura */
+}
+
+/* Estado Excelente da Barra Interna */
+.response-bar-inner.excellent {
+  background-color: #28a745; /* Verde */
+}
+
+/* Estado Bom da Barra Interna */
+.response-bar-inner.good {
+  background-color: #ffc107; /* Amarelo */
+}
+
+/* Estado Regular da Barra Interna */
+.response-bar-inner.regular {
+  background-color: #007bff; /* Azul */
+}
+
+/* Estado Ruim da Barra Interna */
+.response-bar-inner.poor {
+  background-color: #fd7e14; /* Laranja */
+}
+
+/* Estado Muito Ruim da Barra Interna */
+.response-bar-inner.very-poor {
+  background-color: #dc3545; /* Vermelho */
+}
