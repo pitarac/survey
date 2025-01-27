@@ -103,8 +103,8 @@ function Painel() {
   // Dados estáticos do Relatório de Pesquisa
   const periodoPesquisa = "Agosto a Dezembro de 2024";
   const totalAlunos = 5400;
-  const percentualAmostra = 25;
-  const tamanhoAmostra = 1350;
+  const percentualAmostra = 15;
+  const tamanhoAmostra = 810;
   const metodosAnalise = "análise estatística descritiva e testes de hipóteses";
   const indiceConfianca = 95; // Índice de confiança em %
   const margemErro = 2.5; // Margem de erro em %
@@ -112,6 +112,7 @@ function Painel() {
   return (
     <div className="painel-container container"> {/* Adicionando a classe 'container' do Bootstrap */}
       {/* Utilizando o componente Header estilizado */}
+
       <Header
         selectedUnit={selectedUnit}
         handleUnitChange={handleUnitChange}

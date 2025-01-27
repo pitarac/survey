@@ -15,3 +15,15 @@ main {
 }
 
 
+@page {
+  size: A4;  /* ou 'letter', se preferir */
+  margin: 0; /* remove margens da página */
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  /* Ajuste também fontes, cores etc. durante a impressão */
+}
