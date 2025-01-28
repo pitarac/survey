@@ -3,6 +3,9 @@ import './AnalysisSection.css';
 import questions from '../utils/questions'; // Ajuste o caminho conforme sua estrutura
 
 function AnalysisSection({ data, comments }) {
+  // Ordem desejada para exibição das opções
+  const responseOrder = ['Excelente', 'Boa', 'Regular', 'Ruim', 'Muito Ruim'];
+
   // 1) Calcula índices (porcentagem) de satisfação e insatisfação
   const calculateIndex = (options, positiveKeys, negativeKeys) => {
     const totalResponses = Object.values(options).reduce((sum, val) => sum + val, 0);
@@ -106,6 +109,13 @@ function AnalysisSection({ data, comments }) {
   // 5) Executa a análise e obtém objeto final
   const analysis = analyzeSections();
 
+  // Função auxiliar para ordenar as opções conforme a sequência desejada
+  const sortResponses = (responses) => {
+    return responseOrder
+      .filter(option => responses.hasOwnProperty(option)) // Garante que a opção exista nas respostas
+      .map(option => [option, responses[option]]);
+  };
+
   // 6) Renderização do componente
   return (
     <div className="analysis-container">
@@ -118,14 +128,16 @@ function AnalysisSection({ data, comments }) {
         <div key={index}>
           <h3 className="section-title">{section}</h3>
           {values.details.map((detail, idx) => {
-            const totalResponses = Object.values(detail.responses).reduce((a, b) => a + b, 0);
+            // Ordena as respostas conforme a sequência desejada
+            const orderedResponses = sortResponses(detail.responses);
+            const totalResponses = orderedResponses.reduce((a, b) => a + b[1], 0);
             return (
               <div key={idx} className="question-block">
                 <p className="question-title">{detail.question}</p>
 
-                {/* Lista de opções e contagens */}
+                {/* Lista de opções e contagens ordenadas */}
                 <ul className="response-list">
-                  {Object.entries(detail.responses).map(([option, count], i) => {
+                  {orderedResponses.map(([option, count], i) => {
                     const percentage = totalResponses > 0 ? (count / totalResponses) * 100 : 0;
                     return (
                       <li key={i}>
