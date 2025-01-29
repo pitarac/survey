@@ -1148,7 +1148,7 @@
         "questionText": "2.5 - Você sente que sua participação nas atividades contribui para seu desenvolvimento pessoal/profissional?",
         "answer": "Sim",
         "comment": "Sem comentários ",
-        "classification": "reclamações",
+        "classification": "elogios",
         "confidence": 0.4517267942428589
     },
     {
@@ -2156,7 +2156,7 @@
         "questionText": "2.5 - Você sente que sua participação nas atividades contribui para seu desenvolvimento pessoal/profissional?",
         "answer": "Sim",
         "comment": "Estou me sentindo bem melhor com as atividades ",
-        "classification": "sugestões de melhoria",
+        "classification": "elogios",
         "confidence": 0.5587188005447388
     },
     {
@@ -2426,7 +2426,7 @@
         "questionText": "2.5 - Você sente que sua participação nas atividades contribui para seu desenvolvimento pessoal/profissional?",
         "answer": "Sim",
         "comment": "Sim",
-        "classification": "reclamações",
+        "classification": "elogios",
         "confidence": 0.4280448257923126
     },
     {
@@ -2516,7 +2516,7 @@
         "questionText": "2.5 - Você sente que sua participação nas atividades contribui para seu desenvolvimento pessoal/profissional?",
         "answer": "Sim",
         "comment": "Sim",
-        "classification": "reclamações",
+        "classification": "elogios",
         "confidence": 0.4280448257923126
     },
     {
@@ -2606,7 +2606,7 @@
         "questionText": "2.5 - Você sente que sua participação nas atividades contribui para seu desenvolvimento pessoal/profissional?",
         "answer": "Sim",
         "comment": "Sim",
-        "classification": "reclamações",
+        "classification": "elogios",
         "confidence": 0.4280448257923126
     },
     {
