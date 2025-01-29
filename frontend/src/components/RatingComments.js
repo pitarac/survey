@@ -77,11 +77,29 @@ const RatingComments = ({ comments: propComments }) => {
     <div className={styles["rating-comments-container"]}>
       <h1 className={styles["rating-comments-title"]}>Comentários das perguntas</h1>
       <p className={styles["rating-comments-description"]}>
-        Este painel apresenta os resultados de análises automáticas realizadas sobre os comentários fornecidos.
-        Utilizamos um modelo de <strong>Inteligência Artificial</strong> baseado na biblioteca{" "}
-        <strong>Transformers</strong> em Python, que processa linguagem natural para classificar os comentários em
-        <strong> sugestões de melhoria, elogios, reclamações </strong> ou <strong>solicitações de serviços ou infraestrutura</strong>.
-      </p>
+  Este painel apresenta os resultados das análises automáticas realizadas sobre os comentários fornecidos pelos usuários. Utilizamos um modelo avançado de <strong>Inteligência Artificial</strong> desenvolvido com a biblioteca <strong>Transformers</strong> em Python, que processa linguagem natural para classificar os comentários em quatro categorias distintas: <strong>sugestões de melhoria</strong>, <strong>elogios</strong>, <strong>reclamações</strong> e <strong>solicitações de serviços ou infraestrutura</strong>.
+  
+  O processo de classificação é realizado através de um pipeline de <em>zero-shot classification</em>, que permite categorizar os comentários sem a necessidade de um treinamento prévio específico para essas categorias. Para isso, utilizamos o modelo <strong>xlm-roberta-large-xnli</strong>, um modelo multilíngue robusto que suporta o português, garantindo precisão na análise dos textos.
+
+  As seguintes bibliotecas são essenciais para o funcionamento deste sistema:
+  <ul>
+    <li><strong>Streamlit</strong>: Utilizado para criar a interface web interativa, permitindo uma visualização dinâmica e em tempo real dos resultados.</li>
+    <li><strong>Requests</strong>: Responsável por realizar chamadas à API que fornece os dados dos comentários.</li>
+    <li><strong>Transformers</strong>: Biblioteca da Hugging Face que facilita o uso de modelos de linguagem pré-treinados para diversas tarefas de processamento de linguagem natural.</li>
+    <li><strong>PyTorch (torch)</strong>: Backend de aprendizado de máquina que suporta o treinamento e a inferência dos modelos utilizados.</li>
+    <li><strong>SentencePiece</strong>: Biblioteca utilizada para a tokenização eficiente dos textos, fundamental para o processamento adequado pelo modelo de IA.</li>
+  </ul>
+  
+  O fluxo de trabalho é o seguinte:
+  <ol>
+    <li><strong>Coleta de Dados:</strong> Os comentários são obtidos através de uma API, garantindo que os dados estejam sempre atualizados.</li>
+    <li><strong>Processamento:</strong> Utilizamos a biblioteca <strong>Transformers</strong> juntamente com <strong>PyTorch</strong> para carregar o modelo <strong>xlm-roberta-large-xnli</strong> e realizar a classificação dos comentários.</li>
+    <li><strong>Classificação:</strong> O modelo analisa cada comentário e o categoriza de acordo com as quatro categorias estabelecidas, utilizando técnicas avançadas de processamento de linguagem natural.</li>
+    <li><strong>Visualização:</strong> Os resultados são exibidos de forma intuitiva na interface web criada com <strong>Streamlit</strong>, permitindo uma fácil interpretação e tomada de decisão baseada nos insights gerados.</li>
+  </ol>
+  
+  Este sistema automatizado não apenas agiliza a análise dos feedbacks recebidos, mas também proporciona uma visão abrangente das áreas que requerem atenção, destacando os pontos fortes e as oportunidades de melhoria na infraestrutura e nos serviços oferecidos pelo CEU DAS ARTES.
+</p>
       <div className={styles["filters-container"]}>
         <label>
           Classificação:
