@@ -27,7 +27,7 @@ function Header({ selectedUnit, handleUnitChange, handleLogout }) {
       </div>
      
      <div>
-     <h1 className="header-title">Relatório Pesquisa de Satisfação</h1>
+     <h1 className="header-title">Relatório de Pesquisa de Satisfação</h1>
      <img src={header} alt="A imagem exibe uma Familia ao centro da imagem" className="imgheader" />
       </div> 
        
