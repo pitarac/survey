@@ -12,9 +12,15 @@
 
 .header-actions {
   display: flex;
-  justify-content: center;
+  /* Ajuste a largura total ou uma largura máxima para alinhar melhor no centro */
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; /* centraliza o container em relação à página */
+  
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
+  padding: 10px; /* só pra dar um respiro interno */
 }
 
 .audit-button {
@@ -31,4 +37,12 @@
 
 .audit-button:hover {
   background-color: #0056b3;
+}
+
+
+.imgheader {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantém a proporção sem distorção */
+  object-position: center; /* Centraliza a imagem */
 }

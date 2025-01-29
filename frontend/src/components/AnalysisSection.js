@@ -1,11 +1,8 @@
 import React from 'react';
 import './AnalysisSection.css';
-import questions from '../utils/questions'; // Ajuste o caminho conforme sua estrutura
+import questions from '../utils/questions';
 
 function AnalysisSection({ data, comments }) {
-  // Ordem desejada para exibição das opções
-  const responseOrder = ['Excelente', 'Boa', 'Regular', 'Ruim', 'Muito Ruim'];
-
   // 1) Calcula índices (porcentagem) de satisfação e insatisfação
   const calculateIndex = (options, positiveKeys, negativeKeys) => {
     const totalResponses = Object.values(options).reduce((sum, val) => sum + val, 0);
@@ -21,7 +18,7 @@ function AnalysisSection({ data, comments }) {
     };
   };
 
-  // 2) Calcula índices de comentários (positivos, neutros, negativos)
+  // 2) Calcula índices de comentários (sugestões, elogios, reclamações, solicitações)
   const calculateCommentIndex = (questionId) => {
     const filteredComments = comments.filter(
       (c) => String(c.questionId) === String(questionId)
@@ -29,32 +26,48 @@ function AnalysisSection({ data, comments }) {
     const totalComments = filteredComments.length;
 
     if (totalComments === 0) {
-      return { positive: 0, neutral: 0, negative: 0 };
+      return {
+        sugestoes: 0,
+        elogios: 0,
+        reclamacoes: 0,
+        solicitacoes: 0
+      };
     }
 
-    const positive = filteredComments.filter((c) => c.classification === 'POSITIVE').length;
-    const neutral = filteredComments.filter((c) => c.classification === 'NEUTRAL').length;
-    const negative = filteredComments.filter((c) => c.classification === 'NEGATIVE').length;
+    const sugestoesCount = filteredComments.filter(
+      (c) => c.classification === 'sugestões de melhoria'
+    ).length;
+
+    const elogiosCount = filteredComments.filter(
+      (c) => c.classification === 'elogios'
+    ).length;
+
+    const reclamacoesCount = filteredComments.filter(
+      (c) => c.classification === 'reclamações'
+    ).length;
+
+    const solicitacoesCount = filteredComments.filter(
+      (c) => c.classification === 'solicitações de serviços ou infraestrutura'
+    ).length;
 
     return {
-      positive: ((positive / totalComments) * 100).toFixed(2),
-      neutral: ((neutral / totalComments) * 100).toFixed(2),
-      negative: ((negative / totalComments) * 100).toFixed(2),
+      sugestoes: ((sugestoesCount / totalComments) * 100).toFixed(2),
+      elogios: ((elogiosCount / totalComments) * 100).toFixed(2),
+      reclamacoes: ((reclamacoesCount / totalComments) * 100).toFixed(2),
+      solicitacoes: ((solicitacoesCount / totalComments) * 100).toFixed(2),
     };
   };
 
   // 3) Define quais chaves contam como "positivas" e quais contam como "negativas"
-  //    Caso precise de outras lógicas específicas para perguntas diferentes.
   const getResponseKeys = (questionId) => {
     switch (questionId) {
-      case 8: // Exemplo para "3.2 - Você sente que a equipe do CEU..."
+      case 8: // "3.2 - Você sente que a equipe do CEU..."
         return {
           positiveKeys: ['Sempre', 'Na maioria das vezes'],
           negativeKeys: ['Às vezes', 'Raramente', 'Nunca'],
         };
       default:
-        // Aqui consideramos 'Regular' e 'Parcialmente' como "negativo" para fins de cálculo.
-        // Se quiser tratá-los como "neutros", seria preciso alterar a lógica.
+        // "Regular" e "Parcialmente" como negativo, etc.
         return {
           positiveKeys: ['Excelente', 'Boa', 'Sim'],
           negativeKeys: ['Ruim', 'Muito Ruim', 'Não', 'Regular', 'Parcialmente']
@@ -75,8 +88,7 @@ function AnalysisSection({ data, comments }) {
         (item) => parseInt(item.questionId) === parseInt(question.id)
       );
 
-      // Se não encontrou, não exibe. (Se quiser exibir perguntas sem resposta,
-      // crie um response vazio, ex.: { options: {} })
+      // Se não encontrou, não exibe
       if (!response) return;
 
       // Cria/pega a "seção" no objeto results
@@ -85,21 +97,22 @@ function AnalysisSection({ data, comments }) {
         results[section] = { details: [] };
       }
 
+      // Pega as chaves de positivo/negativo pra calcular índice
       const { positiveKeys, negativeKeys } = getResponseKeys(question.id);
       const indices = calculateIndex(response.options, positiveKeys, negativeKeys);
       const commentIndices = calculateCommentIndex(question.id);
 
-      // Some perguntas podem estar na seção "5. Sugestões e Melhorias"
-      // e, se preferir, podemos não calcular satisfaction para elas, como no exemplo original.
+      // Se a pergunta estiver em "5. Sugestões e Melhorias", pode não calcular satisfaction
       const satisfaction =
         section !== '5. Sugestões e Melhorias' ? indices : null;
 
       results[section].details.push({
+        questionId: question.id, // Armazenar ID para uso na renderização
         question: question.question,
         responses: response.options,
         satisfaction,
         comments: commentIndices,
-        interpretation: question.interpretation || null, // exibe interpretação
+        interpretation: question.interpretation || null,
       });
     });
 
@@ -109,14 +122,6 @@ function AnalysisSection({ data, comments }) {
   // 5) Executa a análise e obtém objeto final
   const analysis = analyzeSections();
 
-  // Função auxiliar para ordenar as opções conforme a sequência desejada
-  const sortResponses = (responses) => {
-    return responseOrder
-      .filter(option => responses.hasOwnProperty(option)) // Garante que a opção exista nas respostas
-      .map(option => [option, responses[option]]);
-  };
-
-  // 6) Renderização do componente
   return (
     <div className="analysis-container">
       <h2 className="section-title">Análise por Seções</h2>
@@ -128,16 +133,27 @@ function AnalysisSection({ data, comments }) {
         <div key={index}>
           <h3 className="section-title">{section}</h3>
           {values.details.map((detail, idx) => {
-            // Ordena as respostas conforme a sequência desejada
-            const orderedResponses = sortResponses(detail.responses);
-            const totalResponses = orderedResponses.reduce((a, b) => a + b[1], 0);
+            // <-- Encontra a pergunta no array questions e pega as opções definidas
+            const questionObj = questions.find(q => q.id === detail.questionId);
+            // Se não achar, usa array vazio (p/evitar erro)
+            const questionOptions = questionObj ? questionObj.options : [];
+
+            // Monta o array de [opção, contagem] na ordem definida em questions.js
+            const displayedResponses = questionOptions.map(option => [
+              option,
+              detail.responses[option] || 0
+            ]);
+
+            // Soma total para cálculo de percentuais
+            const totalResponses = displayedResponses.reduce((acc, curr) => acc + curr[1], 0);
+
             return (
               <div key={idx} className="question-block">
                 <p className="question-title">{detail.question}</p>
 
-                {/* Lista de opções e contagens ordenadas */}
+                {/* Lista de opções e contagens, na ordem do questionOptions */}
                 <ul className="response-list">
-                  {orderedResponses.map(([option, count], i) => {
+                  {displayedResponses.map(([option, count], i) => {
                     const percentage = totalResponses > 0 ? (count / totalResponses) * 100 : 0;
                     return (
                       <li key={i}>
@@ -155,7 +171,7 @@ function AnalysisSection({ data, comments }) {
                   })}
                 </ul>
 
-                {/* Índice de satisfação/insatisfação */}
+                {/* Índice de satisfação/insatisfação (para perguntas que não estão na seção 5) */}
                 {detail.satisfaction && (
                   <p>
                     Índice de Satisfação:{' '}
@@ -184,17 +200,31 @@ function AnalysisSection({ data, comments }) {
                   </p>
                 )}
 
-                {/* Índices de comentários (positivos, neutros, negativos) */}
+                {/* Índices de comentários (sugestões, elogios, reclamações, solicitações) */}
                 <p className="comment-index">
-                  Comentários —{' '}
-                  <span className="positive">Positivos: {detail.comments.positive}%</span> |{' '}
-                  <span className="neutral">Neutros: {detail.comments.neutral}%</span> |{' '}
-                  <span className="negative">Negativos: {detail.comments.negative}%</span>
+                  Comentários —{" "}
+                  <span className="praise">
+                    Elogios: {detail.comments.elogios}%
+                  </span>{" "}
+                  |{" "}
+                  <span className="request">
+                    Solicitações: {detail.comments.solicitacoes}%
+                  </span>{" "}
+                  |{" "}
+                  <span className="suggestion">
+                    Sugestões de melhoria: {detail.comments.sugestoes}%
+                  </span>{" "}
+                  |{" "}
+                  <span className="complaint">
+                    Reclamações: {detail.comments.reclamacoes}%
+                  </span>
                 </p>
 
                 {/* Interpretação, se existir */}
                 {detail.interpretation && (
-                  <p className="interpretation-text">{detail.interpretation}</p>
+                  <p className="interpretation-text">
+                    {detail.interpretation}
+                  </p>
                 )}
               </div>
             );

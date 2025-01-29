@@ -2,7 +2,7 @@
 
 .metodologia {
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 0px;
   border-radius: 5px;
 }
 
@@ -18,10 +18,13 @@
 .metodologia h4 {
   margin-top: 15px;
   margin-bottom: 10px;
+  color: #007BFF; /* Azul */
 }
 
 .metodologia p {
   margin-bottom: 15px;
+  text-align: justify; /* Aqui está o segredo para justificar */
+  text-indent: 2em; /* ou o valor que desejar */
 }
 
 .metodologia ul {

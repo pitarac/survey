@@ -88,10 +88,9 @@
   background-color: #dc3545; /* Vermelho */
 }
 
-/* Se você utilizar "Aluno(a)", "Professor(a)", etc. como classe exata,
-   será necessário ESCAPAR os parênteses no CSS. Exemplo: */
+/* CASO USE OPÇÕES COM PARÊNTESES (Aluno(a), etc.) */
 .response-bar-inner.aluno\(a\) {
-  background-color: #17a2b8; /* Exemplo de cor */
+  background-color: #17a2b8;
 }
 .response-bar-inner.professor\(a\) {
   background-color: #17a2b8;
@@ -102,7 +101,6 @@
 .response-bar-inner.gestor\(a\) {
   background-color: #17a2b8;
 }
-/* "Pai/Mãe/Responsável" -> .pai\/mãe\/responsável */
 .response-bar-inner.pai\/mãe\/responsável {
   background-color: #17a2b8;
 }
@@ -112,21 +110,54 @@
   font-weight: bold;
 }
 
-/* INDICADORES DE COMENTÁRIOS */
+/* INDICADORES DE COMENTÁRIOS (SE FOR USAR) */
 .comment-index {
   margin-top: 10px;
 }
 
-.positive {
-  color: #28a745;
-}
-
-.neutral {
+/* ESTILOS DOS COMENTÁRIOS (ANTES: POSITIVE, NEUTRAL, NEGATIVE) 
+   AGORA: 4 NOVAS CATEGORIAS
+*/
+.suggestion {
   color: #ffc107;
+  font-weight: bold;
 }
 
-.negative {
+.praise {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.complaint {
   color: #dc3545;
+  font-weight: bold;
+}
+
+.request {
+  color: #6f42c1;
+  font-weight: bold;
+}
+
+/* Se quiser classes para uso na <td> de classificação (ex. background) */
+.classification-elogios {
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: bold;
+}
+.classification-sugestoes {
+  background-color: #fff3cd;
+  color: #856404;
+  font-weight: bold;
+}
+.classification-reclamacoes {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+}
+.classification-solicitacoes {
+  background-color: #e8daef;
+  color: #5a3e6d;
+  font-weight: bold;
 }
 
 /* INTERPRETAÇÃO */

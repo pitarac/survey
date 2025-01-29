@@ -16,7 +16,7 @@ const RatingComments = ({ comments: propComments }) => {
       setFilteredData(propComments);
       setLoading(false);
     } else {
-      fetch("/classified_comments.json")
+      fetch("./classified_comments.json")
         .then((response) => {
           if (!response.ok) {
             throw new Error(`Erro ao buscar o arquivo: ${response.status}`);
@@ -38,20 +38,26 @@ const RatingComments = ({ comments: propComments }) => {
   useEffect(() => {
     let filtered = data;
 
+    // Filtro por classificação
     if (classificationFilter) {
-      filtered = filtered.filter((item) => item.classification === classificationFilter);
+      filtered = filtered.filter(
+        (item) => item.classification === classificationFilter
+      );
     }
 
+    // Filtro por pergunta
     if (questionFilter) {
       filtered = filtered.filter((item) => item.questionId === questionFilter);
     }
 
+    // Filtro por termo de busca no comentário
     if (searchTerm) {
       filtered = filtered.filter((item) =>
         item.comment.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
+    // Ordenação por score de confiança
     filtered = filtered.sort((a, b) =>
       sortOrder === "asc" ? a.confidence - b.confidence : b.confidence - a.confidence
     );
@@ -73,9 +79,8 @@ const RatingComments = ({ comments: propComments }) => {
       <p className={styles["rating-comments-description"]}>
         Este painel apresenta os resultados de análises automáticas realizadas sobre os comentários fornecidos.
         Utilizamos um modelo de <strong>Inteligência Artificial</strong> baseado na biblioteca{" "}
-        <strong>Transformers</strong> em Python, que processa linguagem natural para identificar o sentimento
-        predominante em cada comentário, como <strong>positivo</strong>, <strong>negativo</strong> ou{" "}
-        <strong>neutro</strong>.
+        <strong>Transformers</strong> em Python, que processa linguagem natural para classificar os comentários em
+        <strong> sugestões de melhoria, elogios, reclamações </strong> ou <strong>solicitações de serviços ou infraestrutura</strong>.
       </p>
       <div className={styles["filters-container"]}>
         <label>
@@ -85,9 +90,12 @@ const RatingComments = ({ comments: propComments }) => {
             onChange={(e) => setClassificationFilter(e.target.value)}
           >
             <option value="">Todas</option>
-            <option value="POSITIVE">Positivo</option>
-            <option value="NEGATIVE">Negativo</option>
-            <option value="NEUTRAL">Neutro</option>
+            <option value="sugestões de melhoria">Sugestões de melhoria</option>
+            <option value="elogios">Elogios</option>
+            <option value="reclamações">Reclamações</option>
+            <option value="solicitações de serviços ou infraestrutura">
+              Solicitações de serviços ou infraestrutura
+            </option>
           </select>
         </label>
         <label>
@@ -145,11 +153,16 @@ const RatingComments = ({ comments: propComments }) => {
                 <td>{item.comment}</td>
                 <td
                   className={
-                    item.classification === "POSITIVE"
+                    // Ajuste de estilo conforme a classificação
+                    item.classification === "elogios"
                       ? styles["classification-positive"]
-                      : item.classification === "NEUTRAL"
+                      : item.classification === "sugestões de melhoria"
                       ? styles["classification-neutral"]
-                      : styles["classification-negative"]
+                      : item.classification === "reclamações"
+                      ? styles["classification-negative"]
+                      : item.classification === "solicitações de serviços ou infraestrutura"
+                      ? styles["classification-neutral"] // ou crie outra cor específica
+                      : ""
                   }
                 >
                   {item.classification}

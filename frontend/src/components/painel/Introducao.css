@@ -2,7 +2,7 @@
 
 .introducao {
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 0px;
   border-radius: 5px;
 }
 
@@ -15,6 +15,9 @@
   font-size: 16px;
   line-height: 1.6;
   color: #333;
+  text-align: justify; /* Aqui está o segredo para justificar */
+  text-indent: 2em; /* ou o valor que desejar */
+
 }
 
 .introducao strong {
